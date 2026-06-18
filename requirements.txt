@@ -1,0 +1,12 @@
+tensorflow
+librosa
+numpy
+pandas
+matplotlib
+seaborn
+plotly
+scikit-learn
+streamlit
+soundfile
+tqdm
+ipykernel
