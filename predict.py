@@ -12,35 +12,35 @@ with open("emotion_labels.json", "r") as f:
     labels = json.load(f)
 
 # Prediction function
-import time
-
 def predict(audio_path):
 
-    print("=" * 50)
-    print("Prediction Started")
+    print("STEP 1: Start")
 
-    start = time.time()
+    t = time.time()
 
     feature = extract_features(audio_path)
-    print("Feature shape:", feature.shape)
-    print("Feature extraction:", time.time() - start)
 
-    start = time.time()
+    print("STEP 2: Feature extracted")
+    print(feature.shape)
+    print("Time:", time.time()-t)
+
+    t = time.time()
 
     feature = np.expand_dims(feature, axis=0)
 
-    print("Input shape:", feature.shape)
+    print("STEP 3: Before model.predict")
 
     prediction = model.predict(feature, verbose=0)
 
-    print("Prediction completed")
-    print("Prediction time:", time.time() - start)
+    print("STEP 4: Prediction completed")
+    print("Time:", time.time()-t)
 
     index = np.argmax(prediction)
+
     confidence = float(np.max(prediction))
+
     emotion = labels[str(index)]
 
-    print("Predicted Emotion:", emotion)
-    print("=" * 50)
+    print("STEP 5: Finished")
 
     return emotion, confidence, prediction[0]
