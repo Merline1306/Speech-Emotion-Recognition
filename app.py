@@ -28,12 +28,13 @@ if uploaded:
 
         audio_path = tmp.name
 
-    emotion, confidence, probs = predict(audio_path)
+    # Show loading message
+    with st.spinner("Analyzing emotion... Please wait..."):
+        emotion, confidence, probs = predict(audio_path)
 
-    st.success(f"Emotion : {emotion}")
+    st.success(f"Predicted Emotion: {emotion}")
 
     st.metric(
         "Confidence",
         f"{confidence*100:.2f}%"
     )
-
